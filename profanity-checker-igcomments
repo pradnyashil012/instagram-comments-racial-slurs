@@ -1,0 +1,17 @@
+import re
+racial_words = {"bramhin", "dalit", "chamaar", "coronavirus", "mulle", "mulla", "katua", "dkhar"} #list of racial slurs used in comments in India
+
+with open('instagramcomments.txt','r') as igcomments:
+    for line in igcomments:
+        match=set()
+        for item in racial_words:
+            if re.findall(item,line):
+                match.add("".join(re.findall(item,line)))
+
+
+        if racial_words-match==set():
+            print("We have found racial slurs in the comments!")
+            
+        else:
+            print("Nice, we din't find any racial slurs in the comments!")
+           
